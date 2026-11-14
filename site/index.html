@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sabaha saxlayaq?</title>
+<meta name="description" content="Tələbələr arasında prokrastinasiya sorğusunun nəticələri və analizi">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+<div class="wrap">
+  <p class="kicker">Bakı Dövlət Universiteti, <span data-fill="periodText"></span>, <span data-fill="n"></span> iştirakçı</p>
+  <h1>Sabaha saxlayaq?</h1>
+  <p class="lede">Bakı Dövlət Universitetinin (BDU) 2-ci və 3-cü kurs bakalavr tələbələrindən soruşduq: tapşırığa nə vaxt başlayırsan, vaxtını nə oğurlayır və bu, qiymətlərə necə təsir edir.</p>
+
+  <figure class="strip" aria-labelledby="strip-cap">
+    <div class="strip-track" id="strip"></div>
+    <div class="strip-axis" id="strip-axis"></div>
+    <figcaption id="strip-cap">Hər nöqtə bir tələbədir və tapşırığa başladığı vaxta görə yerləşdirilib. Qırmızı xətt dedlaynı göstərir. <b data-fill="kpi.late_pct"></b>% dedlayn günü və ya ondan sonra başlayır.<br><span id="strip-unk"></span></figcaption>
+  </figure>
+
+  <p class="portrait">Orta tələbə özünə 10 üzərindən <b data-fill="kpi.avg_score"></b> prokrastinasiya balı verir, gündə <b data-fill="kpi.avg_screen"></b> saat telefona baxır və gecələr <b data-fill="kpi.avg_sleep"></b> saat yatır. Hər 10 tələbədən <span class="nw"><b data-fill="calc.allnightTen"></b>-sı</span> bu semestr ən azı bir dəfə səhərə qədər oyaq qalıb.</p>
+</div>
+</header>
+
+<nav class="toc" aria-label="Bölmələr">
+<div class="wrap">
+  <a href="#tapintilar">Əsas tapıntılar</a>
+  <a href="#psixologiya">Dedlayn psixologiyası</a>
+  <a href="#menzere">Ümumi mənzərə</a>
+  <a href="#istirakcilar">İştirakçılar</a>
+  <a href="#meslehetler">Tələbələr nə deyir</a>
+  <a href="#metod">Sorğu və metodologiya</a>
+</div>
+</nav>
+
+<main>
+<section id="tapintilar" class="wrap">
+  <h2>Əsas tapıntılar</h2>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Daha çox təxirə salan daha aşağı bal alır</h3>
+      <p>Özünə 1–3 bal verən "az prokrastinatorların" <b data-fill="calc.lowTop"></b>%-i semestri 81+ balla bitirib. 7–10 bal verənlər arasında bu göstərici cəmi <b data-fill="calc.highTop"></b>%-dir.</p>
+      <p class="note">Özünüqiymətləndirmə ilə orta bal arasında korrelyasiya: r = <span data-fill="insight.corr_score_gpa"></span>.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Orta balın paylanması, prokrastinasiya səviyyəsinə görə (sətir üzrə %)</p>
+      <div id="heat" class="heat"></div>
+      <p class="unk-note">Orta balını deməyən <span data-fill="unknown.gpa"></span> nəfər bu cədvələ daxil edilməyib.</p>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Dedlayn günü başlayanlar <span data-fill="calc.startGap"></span> bal itirir</h3>
+      <p>Tapşırığa dərhal başlayanların orta balı <b data-fill="calc.startFirst"></b>, dedlayn günü başlayanlarınkı isə <b data-fill="calc.startLastDay"></b>.</p>
+      <p>Gec başlayanların <b data-fill="insight.late_but_aware_pct"></b>%-i bunun qiymətlərinə zərər verdiyini özü də etiraf edir. Yəni onlar problemi bilirlər.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Orta bal, işə başlama vaxtına görə</p>
+      <div class="chart h-md"><canvas id="c-start-gpa"></canvas></div>
+      <p class="unk-note">Boz sütun "bilmirəm / fərqli olur" cavabını göstərir. Orta bal yalnız balını deyənlər üzrə hesablanıb.</p>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Səhərə qədər oxumaq kömək etmir</h3>
+      <p>Bu semestr heç vaxt gecəni oyaq keçirməyənlərin orta balı <b data-fill="calc.anFirst"></b>-dir. 6 və daha çox dəfə oyaq qalanlarda bu, <b data-fill="calc.anLast"></b>-ə düşür.</p>
+      <p class="note">Gecə oxumaq çox vaxt artıq gecikmiş işin nəticəsidir.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Orta bal, bu semestr səhərə qədər oyaq qalma sayına görə</p>
+      <div class="chart h-sm"><canvas id="c-allnight"></canvas></div>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>TikTok istifadəçiləri daha çox təxirə salır</h3>
+      <p>TikTok-u "vaxt oğrusu" kimi qeyd edən <b data-fill="insight.tiktok_n"></b> tələbənin orta prokrastinasiya balı <b data-fill="insight.tiktok_score"></b>, qalanlarınkı <b data-fill="insight.no_tiktok_score"></b>-dir. Onların ekran vaxtı da gündə orta hesabla <b data-fill="calc.tiktokExtra"></b> saat çoxdur.</p>
+      <p class="note">TikTok-dan sonra mesajlaşma, yatmaq və oyunlar gəlir.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Orta prokrastinasiya balı (1–10), "vaxt oğrusuna" görə</p>
+      <div class="chart h-md"><canvas id="c-thief"></canvas></div>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Ekran vaxtı artdıqca prokrastinasiya da artır</h3>
+      <p>Gündəlik ekran vaxtı ilə özünüqiymətləndirmə arasında orta-güclü əlaqə var (r = <b data-fill="insight.corr_screen_score"></b>).</p>
+      <p class="note">Bu əlaqə nəyin səbəb olduğunu göstərmir. Telefon prokrastinasiyaya səbəb ola bilər, prokrastinasiya da telefona qaçmağa.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Ekran vaxtı (saat/gün) və prokrastinasiya balı, hər nöqtə bir tələbə</p>
+      <div class="chart h-md"><canvas id="c-scatter"></canvas></div>
+      <p class="unk-note">Ekran vaxtını bilməyən <span data-fill="unknown.screen"></span> nəfər qrafikdə yoxdur.</p>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>"Stres altında daha yaxşı işləyirəm" bir mifdir</h3>
+      <p>Bu səbəbi seçən <b data-fill="insight.stress_believers_n"></b> tələbənin orta balı <b data-fill="insight.stress_believers_gpa"></b>-dir, ümumi orta isə <b data-fill="insight.all_gpa"></b>. Onlardan aşağı nəticəni yalnız mövzunu darıxdırıcı hesab edənlər göstərir.</p>
+      <p class="note">Qrup kiçikdir (<span data-fill="insight.stress_believers_n"></span> nəfər), nəticəyə ehtiyatla yanaşmaq lazımdır.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Orta bal, təxirə salmanın əsas səbəbinə görə</p>
+      <div class="chart h-md"><canvas id="c-reason"></canvas></div>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Səhər insanları daha az təxirə salır</h3>
+      <p>Özünü səhər məhsuldar hesab edənlərin orta prokrastinasiya balı <b data-fill="insight.morning_score"></b>/10-dur. Axşam və gecə insanlarında bu, <b data-fill="calc.eveningRange"></b>/10-dur.</p>
+      <p>Gecə bayquşları orta hesabla <b data-fill="insight.night_sleep"></b> saat yatır, səhər insanları isə <b data-fill="insight.morning_sleep"></b> saat.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Orta prokrastinasiya balı (1–10), ən məhsuldar vaxta görə</p>
+      <div class="chart h-sm"><canvas id="c-chrono"></canvas></div>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Hər hansı üsul heç nə etməməkdən yaxşıdır</h3>
+      <p>Pomodoro istifadə edən <b data-fill="insight.pomodoro_n"></b> tələbənin orta balı <b data-fill="insight.pomodoro_gpa"></b>-dir. Prokrastinasiya ilə heç cür mübarizə aparmayan <b data-fill="insight.nothing_n"></b> tələbədə isə <b data-fill="insight.nothing_gpa"></b>.</p>
+      <p class="note">Ən populyar üsul to-do siyahısıdır, ən yüksək orta bal isə Pomodoro istifadə edənlərdədir.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Orta bal, istifadə olunan mübarizə üsuluna görə</p>
+      <div class="chart h-md"><canvas id="c-coping"></canvas></div>
+    </div>
+  </article>
+</section>
+
+<section id="psixologiya" class="wrap">
+  <h2>Dedlayn psixologiyası</h2>
+  <p class="section-lede">Dörd əlavə sual: təxirə salanda nə hiss edirsən, vaxtı necə planlaşdırırsan, uzadılmış dedlaynla nə edirsən və son anda süni intellektə müraciət edirsənmi.</p>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Gec başlayanlar vaxtı iki dəfə az hesablayır</h3>
+      <p>Son anda başlayanların <b data-fill="charts.planning_x.rows.2.pct.3"></b>%-i deyir ki, tapşırıq planladığından 2 dəfə və daha çox vaxt aparır. Erkən başlayanlarda bu göstərici cəmi <b data-fill="charts.planning_x.rows.0.pct.3"></b>%-dir.</p>
+      <p class="note">Psixologiyada bu, "planlaşdırma xətası" adlanır. "İki saata bitirərəm" düşüncəsi gec başlamağa bəhanə olur.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">İş planladığından nə qədər vaxt aparır? İşə başlama vaxtına görə (sətir üzrə %)</p>
+      <div class="chart h-md"><canvas id="c-planning"></canvas></div>
+      <p class="unk-note">"Bilmirəm, plan qurmuram" deyən <span data-fill="unknown.planning"></span> nəfər və başlama vaxtını bilməyənlər daxil edilməyib.</p>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Təxirə salmaq rahatlıq gətirmir</h3>
+      <p>Özünə 7–10 bal verənlərin yalnız <b data-fill="charts.feeling_x.rows.2.pct.0"></b>%-i təxirə salanda rahat olur. <b data-fill="insight.guilty_or_anxious_high"></b>%-i günahkarlıq və ya narahatlıq hiss edir, <b data-fill="charts.feeling_x.rows.2.pct.3"></b>%-i isə artıq heç nə hiss etmir.</p>
+      <p class="note">Çoxu təxirə salanda özünü pis hiss edir, amma yenə də təxirə salır. Heç nə hiss etməyənlər üçün bu, artıq vərdişdir.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Təxirə salanda nə hiss edirsən? Prokrastinasiya balına görə (sətir üzrə %)</p>
+      <div class="chart h-md"><canvas id="c-feeling"></canvas></div>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Əlavə vaxt kömək etmir</h3>
+      <p>Müəllim dedlaynı uzadanda ən çox təxirə salanların <b data-fill="charts.extension_x.rows.2.pct.2"></b>%-i sadəcə başlamağı yeni dedlayna yaxın vaxta keçirir.</p>
+      <p>Belə edənlərin orta balı <b data-fill="charts.extension_gpa.means.2"></b>-dir, əvvəlki planla davam edənlərinki isə <b data-fill="charts.extension_gpa.means.0"></b>.</p>
+      <p class="note">Bu, Parkinson qanununa uyğundur. Qanuna görə iş ona ayrılan bütün vaxtı doldurur.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Dedlayn bir həftə uzadılanda nə edirsən? Prokrastinasiya balına görə (sətir üzrə %)</p>
+      <div class="chart h-md"><canvas id="c-extension"></canvas></div>
+    </div>
+  </article>
+
+  <article class="finding">
+    <div class="finding-text">
+      <h3>Son anda süni intellekt ən çox təxirə salanların vərdişidir</h3>
+      <p>7–10 bal verənlərin <b data-fill="charts.ai_x.rows.2.pct.2"></b>%-i tapşırığı son anda bitirmək üçün tez-tez süni intellektdən istifadə edir. 4–6 bal verənlərdə bu, <b data-fill="charts.ai_x.rows.1.pct.2"></b>%-dir.</p>
+      <p>Tez-tez istifadə edənlərin orta balı <b data-fill="charts.ai_gpa.means.2"></b>, heç istifadə etməyənlərinki <b data-fill="charts.ai_gpa.means.0"></b>.</p>
+      <p class="note"><span data-fill="unknown.ai"></span> nəfər (<span data-fill="calc.aiUnkPct"></span>%) bu suala "demək istəmirəm" cavabını verib. Bu, sorğuda ən çox cavabsız qalan sual oldu.</p>
+    </div>
+    <div class="finding-viz">
+      <p class="viz-title">Son anda süni intellektdən istifadə, prokrastinasiya balına görə (sətir üzrə %)</p>
+      <div class="chart h-md"><canvas id="c-ai"></canvas></div>
+      <p class="unk-note">"Demək istəmirəm" cavabları faizlərə daxil edilməyib.</p>
+    </div>
+  </article>
+</section>
+
+<section id="menzere" class="wrap">
+  <h2>Ümumi mənzərə</h2>
+  <p class="section-lede">Sorğunun əsas suallarına cavabların paylanması. Bir neçə variant seçilə bilən suallarda faiz bütün iştirakçılara görə hesablanıb.</p>
+  <div class="grid">
+    <figure class="card"><figcaption>Özünü nə qədər prokrastinator hesab edirsən? (1–10)</figcaption><div class="chart h-sm"><canvas id="c-score"></canvas></div></figure>
+    <figure class="card"><figcaption>Tapşırığa nə vaxt başlayırsan?</figcaption><div class="chart h-sm"><canvas id="c-start"></canvas></div></figure>
+    <figure class="card"><figcaption>Təxirə salmağın əsas səbəbi</figcaption><div class="chart h-md"><canvas id="c-reason-d"></canvas></div></figure>
+    <figure class="card"><figcaption>Ən çox təxirə salınan iş</figcaption><div class="chart h-sm"><canvas id="c-task"></canvas></div></figure>
+    <figure class="card"><figcaption>Vaxtı nə oğurlayır? (% iştirakçı)</figcaption><div class="chart h-md"><canvas id="c-thieves"></canvas></div></figure>
+    <figure class="card"><figcaption>Mübarizə üsulları (% iştirakçı)</figcaption><div class="chart h-md"><canvas id="c-coping-d"></canvas></div></figure>
+    <figure class="card"><figcaption>Dedlayndan əvvəl stres (1 sakit, 5 panika)</figcaption><div class="chart h-sm"><canvas id="c-stress"></canvas></div></figure>
+    <figure class="card"><figcaption>Son semestr orta bal</figcaption><div class="chart h-sm"><canvas id="c-gpa"></canvas></div></figure>
+  </div>
+</section>
+
+<section id="istirakcilar" class="wrap">
+  <h2>İştirakçılar</h2>
+  <div class="grid grid-3">
+    <figure class="card"><figcaption>Yaş</figcaption><div class="chart h-xs"><canvas id="c-age"></canvas></div></figure>
+    <figure class="card"><figcaption>Kurs</figcaption><div class="chart h-xs"><canvas id="c-year"></canvas></div></figure>
+    <figure class="card"><figcaption>Cins</figcaption><div class="chart h-xs"><canvas id="c-gender"></canvas></div></figure>
+    <figure class="card"><figcaption>Fakültə</figcaption><div class="chart h-xs"><canvas id="c-field"></canvas></div></figure>
+    <figure class="card"><figcaption>İşləyir?</figcaption><div class="chart h-xs"><canvas id="c-work"></canvas></div></figure>
+    <figure class="card"><figcaption>Orta prokrastinasiya balı, fakültəyə görə</figcaption><div class="chart h-xs"><canvas id="c-field-score"></canvas></div></figure>
+  </div>
+</section>
+
+<section id="meslehetler" class="wrap">
+  <h2>Tələbələr nə deyir</h2>
+  <p class="section-lede">Sonuncu, istəyə bağlı sual: "Prokrastinasiyaya qarşı digər tələbələrə bir məsləhətin?"</p>
+  <ul class="quotes" id="quotes"></ul>
+</section>
+
+<section id="metod" class="wrap method">
+  <h2>Sorğu və metodologiya</h2>
+  <div class="method-cols">
+    <div>
+      <p>Sorğu <span data-fill="periodText"></span> tarixlərində Bakı Dövlət Universitetinin (BDU) müxtəlif fakültələrində 2-ci və 3-cü kurs bakalavr tələbələri arasında onlayn aparılıb. Sorğu 24 sualdan ibarətdir: 6 demoqrafik, 7 prokrastinasiya vərdişləri haqqında, 6 gündəlik rejim və nəticələr haqqında, 4 dedlayn psixologiyası haqqında və 1 açıq sual. Cavablar anonimdir.</p>
+      <p class="downloads"><a href="responses.csv" download>Cavabları yüklə (CSV)</a><a href="sorgu.md" download>Sorğu suallarını yüklə</a></p>
+    </div>
+    <details>
+      <summary>Bütün suallara bax</summary>
+      <ol class="qlist">
+        <li>Yaşın?</li>
+        <li>Cinsin?</li>
+        <li>Neçənci kursdasan? (2-ci / 3-cü)</li>
+        <li>Hansı fakültədə oxuyursan?</li>
+        <li>Harada yaşayırsan?</li>
+        <li>Təhsillə yanaşı işləyirsən?</li>
+        <li>1-dən 10-a qədər özünü nə qədər "prokrastinator" hesab edirsən?</li>
+        <li>Tapşırığın üzərində adətən nə vaxt işləməyə başlayırsan?</li>
+        <li>Bu semestr neçə dəfə səhərə qədər oyaq qalmısan?</li>
+        <li>Ən çox hansı işi təxirə salırsan?</li>
+        <li>Təxirə salmağının əsas səbəbi nədir?</li>
+        <li>Vaxtını ən çox nə "oğurlayır"? (bir neçə variant)</li>
+        <li>Gündə neçə saat telefona baxırsan?</li>
+        <li>Günün hansı vaxtında daha məhsuldarsan?</li>
+        <li>Gecələr neçə saat yatırsan?</li>
+        <li>Prokrastinasiya ilə mübarizə üçün nələrdən istifadə edirsən? (bir neçə variant)</li>
+        <li>Dedlayndan əvvəl stres səviyyən (1–5)?</li>
+        <li>Prokrastinasiya qiymətlərinə mənfi təsir edir? (1–5)</li>
+        <li>Son semestr orta balın? ("demək istəmirəm" variantı ilə)</li>
+        <li>İşi təxirə salanda özünü necə hiss edirsən?</li>
+        <li>Tapşırıq adətən planladığından nə qədər vaxt aparır?</li>
+        <li>Müəllim dedlaynı bir həftə uzadanda nə edirsən?</li>
+        <li>Bu semestr tapşırığı son anda bitirmək üçün süni intellektdən istifadə etmisən?</li>
+        <li>Prokrastinasiyaya qarşı bir məsləhətin? (açıq sual)</li>
+      </ol>
+    </details>
+  </div>
+</section>
+</main>
+
+<footer class="wrap foot">
+  <p>BDU, 2–3-cü kurs bakalavr tələbələri. <span data-fill="n"></span> cavab.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
