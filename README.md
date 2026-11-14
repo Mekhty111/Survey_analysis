@@ -1,18 +1,18 @@
-# Sabaha saxlayaq? — опрос о прокрастинации студентов (демо)
+# Sabaha saxlayaq? Tələbələr arasında prokrastinasiya sorğusu (demo)
 
-Демо-проект для пары: опрос на азербайджанском, 82 синтетических (mock) ответа и статичный сайт с анализом.
+Universitet dərsi üçün demo layihə: Azərbaycan dilində sorğu, 82 sintetik (mock) cavab və analiz olunan statik sayt.
 
-## Структура
+## Struktur
 
-| Путь | Что внутри |
+| Yol | İçində nə var |
 |---|---|
-| `survey/sorgu.md` | 20 вопросов опроса (AZ), готово к переносу в Google Forms |
-| `scripts/generate_data.py` | Генератор реалистичных mock-ответов (seed 2026, ответы связаны скрытой «склонностью к прокрастинации») |
-| `data/responses.csv`, `data/responses.json` | Сгенерированные ответы |
-| `scripts/analyze.py` | Считает распределения, кросс-таблицы и корреляции и пишет их в `site/data.js` |
-| `site/` | Сайт: `index.html`, `style.css`, `app.js` (Chart.js 4.4.1), `data.js` |
+| `survey/sorgu.md` | Sorğunun 24 sualı (AZ), Google Forms-a köçürməyə hazırdır |
+| `scripts/generate_data.py` | Real görünən mock cavabların generatoru (seed 2026, cavablar gizli "prokrastinasiya meyli" ilə bağlıdır) |
+| `data/responses.csv`, `data/responses.json` | Yaradılmış cavablar |
+| `scripts/analyze.py` | Paylanmaları, çarpaz cədvəlləri və korrelyasiyaları hesablayır və `site/data.js` faylına yazır |
+| `site/` | Sayt: `index.html`, `style.css`, `app.js` (Chart.js 4.4.1), `data.js` |
 
-## Пересобрать данные
+## Məlumatları yenidən yaratmaq
 
 ```bash
 python scripts/generate_data.py
@@ -20,13 +20,13 @@ python scripts/analyze.py
 cp data/responses.csv survey/sorgu.md site/
 ```
 
-## Локальный просмотр
+## Lokal baxış
 
 ```bash
 python -m http.server 5510 --directory site
 ```
 
-## Деплой
+## Deploy
 
 ```bash
 cd site
